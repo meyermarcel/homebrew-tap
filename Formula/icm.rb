@@ -1,9 +1,9 @@
 class Icm < Formula
   desc "Validate or generate intermodal container markings."
   homepage "https://github.com/meyermarcel/icm"
-  url "https://github.com/meyermarcel/icm/releases/download/1.0.0-beta.3/icm_Darwin_x86_64.tar.gz"
-  version "1.0.0-beta.3"
-  sha256 "44dcf9f5362b320def5112f15106e73ad879cb3e8d57eb4915c1fed1b3bd4962"
+  url "https://github.com/meyermarcel/icm/releases/download/1.0.0-beta.4/icm_Darwin_x86_64.tar.gz"
+  version "1.0.0-beta.4"
+  sha256 "cd2a2b40b100bfa27ff4b716556c86ad008424995948a92a027906fb6721d7cc"
 
   def install
     bin.install "icm"
@@ -15,8 +15,8 @@ class Icm < Formula
     output = Utils.popen_read("#{bin}/icm misc zsh-completion")
     (zsh_completion/"_icm").write output
     
-    # Install man pages
-    man1.install Dir["build/man/man1/*.1"]
+    # man-pages is also defined in Makefile
+    man1.install Dir["man-pages/man1/*.1"]
   end
 
   test do
