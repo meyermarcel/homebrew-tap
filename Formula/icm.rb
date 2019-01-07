@@ -1,9 +1,9 @@
 class Icm < Formula
   desc "Validate or generate intermodal container markings."
   homepage "https://github.com/meyermarcel/icm"
-  url "https://github.com/meyermarcel/icm/releases/download/1.0.0/icm_Darwin_x86_64.tar.gz"
-  version "1.0.0"
-  sha256 "9542e883c24881350c80a295f5e98ddd91f81cf120e6a8706cffe1ca38c97f3c"
+  url "https://github.com/meyermarcel/icm/releases/download/1.0.1/icm_Darwin_x86_64.tar.gz"
+  version "1.0.1"
+  sha256 "7a92a7d06e2c1afa9163f1dbc92624932f6bd4957b41629fe78c2ebefb61b779"
 
   def install
     bin.install "icm"
