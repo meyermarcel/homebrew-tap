@@ -2,16 +2,25 @@
 class Icm < Formula
   desc "Generate or validate intermodal container markings."
   homepage "https://github.com/meyermarcel/icm"
-  version "1.1.5"
+  version "1.1.6"
   bottle :unneeded
 
   if OS.mac?
-    url "https://github.com/meyermarcel/icm/releases/download/1.1.5/icm_Darwin_x86_64.tar.gz"
-    sha256 "f1401d883204a90310967d28dbaad557143054e1a1159b8044e86b539a249116"
+    url "https://github.com/meyermarcel/icm/releases/download/1.1.6/icm_Darwin_x86_64.tar.gz"
+    sha256 "3a2e59b9443040712be8481037f65263ba019eb6242eeedc426bea59ef19ef81"
   elsif OS.linux?
     if Hardware::CPU.intel?
-      url "https://github.com/meyermarcel/icm/releases/download/1.1.5/icm_Linux_x86_64.tar.gz"
-      sha256 "6f9a7a573c21dca280c4aa7802726fc844b95dac7cb8fdbe7dc0a13f8e7329e7"
+      url "https://github.com/meyermarcel/icm/releases/download/1.1.6/icm_Linux_x86_64.tar.gz"
+      sha256 "2000eff09b93670f87c0d82898044d61dbbde20be5cafc9ff72a6a47bca2bfdb"
+    end
+    if Hardware::CPU.arm?
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/meyermarcel/icm/releases/download/1.1.6/icm_Linux_arm64.tar.gz"
+        sha256 "964163c0325b03845b6a392967601ba74b156e603eca621cc5beca1ac2d7e4c3"
+      else
+        url "https://github.com/meyermarcel/icm/releases/download/1.1.6/icm_Linux_armv6.tar.gz"
+        sha256 "dd9943e1c3e8ab539de64b69b63011c369d08d6cd9a18bb469efe18a98fa776c"
+      end
     end
   end
 
