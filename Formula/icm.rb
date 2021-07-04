@@ -5,24 +5,33 @@
 class Icm < Formula
   desc "Generate or validate intermodal container markings."
   homepage "https://github.com/meyermarcel/icm"
-  version "1.1.9"
+  version "1.2.0"
   bottle :unneeded
 
-  if OS.mac?
-    url "https://github.com/meyermarcel/icm/releases/download/1.1.9/icm_Darwin_x86_64.tar.gz"
-    sha256 "3f89d3d00bfe51be6392ce3bce4296c0ee48a2e81fa17acaef9ef8cef2d10be3"
+  on_macos do
+    if Hardware::CPU.intel?
+      url "https://github.com/meyermarcel/icm/releases/download/1.2.0/icm_Darwin_x86_64.tar.gz"
+      sha256 "280ab3409f100ac11718f4254997d5c254aa46b01e8408cf71f8c162e35501a4"
+    end
+    if Hardware::CPU.arm?
+      url "https://github.com/meyermarcel/icm/releases/download/1.2.0/icm_Darwin_arm64.tar.gz"
+      sha256 "7fff46c4d975ce0b1b4e6ffd1e8d2c8cff6762087f067fefc0686f11dc082382"
+    end
   end
-  if OS.linux? && Hardware::CPU.intel?
-    url "https://github.com/meyermarcel/icm/releases/download/1.1.9/icm_Linux_x86_64.tar.gz"
-    sha256 "8534015aac5b7cab8d62a26356e01683170d058d32667c4754b855196b6928ac"
-  end
-  if OS.linux? && Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-    url "https://github.com/meyermarcel/icm/releases/download/1.1.9/icm_Linux_armv6.tar.gz"
-    sha256 "b97496c4fc1e5d7569cbe2f8a725b82de0fae96121045126e5a7983b41da9b93"
-  end
-  if OS.linux? && Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-    url "https://github.com/meyermarcel/icm/releases/download/1.1.9/icm_Linux_arm64.tar.gz"
-    sha256 "556dab57a7f2b372eac071330f69e5d8b59fb5f5933365abe260a03ad40bf05d"
+
+  on_linux do
+    if Hardware::CPU.intel?
+      url "https://github.com/meyermarcel/icm/releases/download/1.2.0/icm_Linux_x86_64.tar.gz"
+      sha256 "9c80f959ea938a656125bb7d31545ff95a7ffd67b205aac5fb79d13796c72a4c"
+    end
+    if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
+      url "https://github.com/meyermarcel/icm/releases/download/1.2.0/icm_Linux_armv6.tar.gz"
+      sha256 "fb6e612f940e22474bebe519966f53a1bfe8f1e6222ee26e8b7c193c0a1ecb1b"
+    end
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/meyermarcel/icm/releases/download/1.2.0/icm_Linux_arm64.tar.gz"
+      sha256 "9c85c827435be3c54024d151313e80347d35c179eee9281170b4470af65cce62"
+    end
   end
 
   def install
@@ -36,7 +45,7 @@ class Icm < Formula
     (zsh_completion/"_icm").write output
 
     # man-pages is also defined in Makefile
-    man1.install Dir["man-pages/man1/*.1"]
+    man1.install Dir["docs/man-pages/man1/*.1"]
   end
 
   test do
