@@ -6,46 +6,101 @@ class Icm < Formula
   desc "Generate or validate intermodal container markings."
   homepage "https://github.com/meyermarcel/icm"
   version "1.2.0"
-  bottle :unneeded
 
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/meyermarcel/icm/releases/download/1.2.0/icm_Darwin_x86_64.tar.gz"
-      sha256 "280ab3409f100ac11718f4254997d5c254aa46b01e8408cf71f8c162e35501a4"
+      sha256 "81a9f0b385090b0453c5d5357605b3e2a50a0755510e555818ca8888b3a51ee2"
+
+      def install
+        bin.install "icm"
+        # Install bash completion
+        output = Utils.popen_read("#{bin}/icm misc bash-completion")
+        (bash_completion/"icm").write output
+
+        # Install zsh completion
+        output = Utils.popen_read("#{bin}/icm misc zsh-completion")
+        (zsh_completion/"_icm").write output
+
+        # man-pages is also defined in Makefile
+        man1.install Dir["docs/man-pages/man1/*.1"]
+      end
     end
     if Hardware::CPU.arm?
       url "https://github.com/meyermarcel/icm/releases/download/1.2.0/icm_Darwin_arm64.tar.gz"
-      sha256 "7fff46c4d975ce0b1b4e6ffd1e8d2c8cff6762087f067fefc0686f11dc082382"
+      sha256 "8c4c02ecc229bafb5c59c27f8708140f28c5fc38038db026f75c0820e41ef8e6"
+
+      def install
+        bin.install "icm"
+        # Install bash completion
+        output = Utils.popen_read("#{bin}/icm misc bash-completion")
+        (bash_completion/"icm").write output
+
+        # Install zsh completion
+        output = Utils.popen_read("#{bin}/icm misc zsh-completion")
+        (zsh_completion/"_icm").write output
+
+        # man-pages is also defined in Makefile
+        man1.install Dir["docs/man-pages/man1/*.1"]
+      end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
       url "https://github.com/meyermarcel/icm/releases/download/1.2.0/icm_Linux_x86_64.tar.gz"
-      sha256 "9c80f959ea938a656125bb7d31545ff95a7ffd67b205aac5fb79d13796c72a4c"
+      sha256 "60d38cac15d79ab03a3b6d9acfc5c87982fa602fb4429a3cdcb8fe573aa67c67"
+
+      def install
+        bin.install "icm"
+        # Install bash completion
+        output = Utils.popen_read("#{bin}/icm misc bash-completion")
+        (bash_completion/"icm").write output
+
+        # Install zsh completion
+        output = Utils.popen_read("#{bin}/icm misc zsh-completion")
+        (zsh_completion/"_icm").write output
+
+        # man-pages is also defined in Makefile
+        man1.install Dir["docs/man-pages/man1/*.1"]
+      end
     end
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
       url "https://github.com/meyermarcel/icm/releases/download/1.2.0/icm_Linux_armv6.tar.gz"
-      sha256 "fb6e612f940e22474bebe519966f53a1bfe8f1e6222ee26e8b7c193c0a1ecb1b"
+      sha256 "0e3927a9f9615083cc5bc5fb090bbde18b17cce9578ebeab086ea5802b282bdc"
+
+      def install
+        bin.install "icm"
+        # Install bash completion
+        output = Utils.popen_read("#{bin}/icm misc bash-completion")
+        (bash_completion/"icm").write output
+
+        # Install zsh completion
+        output = Utils.popen_read("#{bin}/icm misc zsh-completion")
+        (zsh_completion/"_icm").write output
+
+        # man-pages is also defined in Makefile
+        man1.install Dir["docs/man-pages/man1/*.1"]
+      end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://github.com/meyermarcel/icm/releases/download/1.2.0/icm_Linux_arm64.tar.gz"
-      sha256 "9c85c827435be3c54024d151313e80347d35c179eee9281170b4470af65cce62"
+      sha256 "29c9b2d720c142250954399c13d1a45eec19cda234f277a8b11c28179a5ffe80"
+
+      def install
+        bin.install "icm"
+        # Install bash completion
+        output = Utils.popen_read("#{bin}/icm misc bash-completion")
+        (bash_completion/"icm").write output
+
+        # Install zsh completion
+        output = Utils.popen_read("#{bin}/icm misc zsh-completion")
+        (zsh_completion/"_icm").write output
+
+        # man-pages is also defined in Makefile
+        man1.install Dir["docs/man-pages/man1/*.1"]
+      end
     end
-  end
-
-  def install
-    bin.install "icm"
-    # Install bash completion
-    output = Utils.popen_read("#{bin}/icm misc bash-completion")
-    (bash_completion/"icm").write output
-
-    # Install zsh completion
-    output = Utils.popen_read("#{bin}/icm misc zsh-completion")
-    (zsh_completion/"_icm").write output
-
-    # man-pages is also defined in Makefile
-    man1.install Dir["docs/man-pages/man1/*.1"]
   end
 
   test do
