@@ -5,12 +5,12 @@
 class Icm < Formula
   desc "Generate or validate intermodal container markings."
   homepage "https://github.com/meyermarcel/icm"
-  version "2.3.1"
+  version "2.3.2"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/meyermarcel/icm/releases/download/2.3.1/icm_Darwin_arm64.tar.gz"
-      sha256 "da98f5717616ed6d5c33674b712295b2562974b61c310b701a156e7b77aca50d"
+      url "https://github.com/meyermarcel/icm/releases/download/2.3.2/icm_Darwin_arm64.tar.gz"
+      sha256 "d46b67f5ce6c6a843a8290aa4db2b2fe9caf447f2109862a6a6da427fef4ccee"
 
       def install
         bin.install "icm"
@@ -32,8 +32,8 @@ class Icm < Formula
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/meyermarcel/icm/releases/download/2.3.1/icm_Darwin_x86_64.tar.gz"
-      sha256 "abfe2050e57b4a31c095d5420aafcfd9f86c7b15a26290148ac6507326b08b98"
+      url "https://github.com/meyermarcel/icm/releases/download/2.3.2/icm_Darwin_x86_64.tar.gz"
+      sha256 "1cf3667b1decde595208a3b30d0cb6a4ea62f9b5faecee8c9a9f16e15ec6aa0a"
 
       def install
         bin.install "icm"
@@ -57,32 +57,9 @@ class Icm < Formula
   end
 
   on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/meyermarcel/icm/releases/download/2.3.1/icm_Linux_x86_64.tar.gz"
-      sha256 "aac978674bf4fe7136c8a9bc339aa3be13f01c90c0a0e46f8331432a527d2220"
-
-      def install
-        bin.install "icm"
-
-        # Install bash completion
-        bash_output = Utils.popen_read("#{bin}/icm completion bash")
-        (bash_completion/"icm").write bash_output
-
-        # Install zsh completion
-        zsh_output = Utils.popen_read("#{bin}/icm completion zsh")
-        (zsh_completion/"_icm").write zsh_output
-
-        # Install fish completion
-        fish_output = Utils.popen_read("#{bin}/icm completion fish")
-        (fish_completion/"icm.fish").write fish_output
-
-        # man-pages is also defined in Makefile
-        man1.install Dir["docs/man-pages/man1/*.1"]
-      end
-    end
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/meyermarcel/icm/releases/download/2.3.1/icm_Linux_armv6.tar.gz"
-      sha256 "59535ff1b80928f4b27e1cb4d23ea1190ee2d244b5082351a6621e522ad995dd"
+      url "https://github.com/meyermarcel/icm/releases/download/2.3.2/icm_Linux_armv6.tar.gz"
+      sha256 "654486c253fa3e7f294f5214113d68110e2dfaf95963047e23c4629b7c1c18ec"
 
       def install
         bin.install "icm"
@@ -104,8 +81,31 @@ class Icm < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/meyermarcel/icm/releases/download/2.3.1/icm_Linux_arm64.tar.gz"
-      sha256 "41fe96d80471de2c90cbc0d7255e731e639ed7fb7d139133d61a101e03edef3d"
+      url "https://github.com/meyermarcel/icm/releases/download/2.3.2/icm_Linux_arm64.tar.gz"
+      sha256 "69994c74a1412f3a7a633aa4ff7136e6f5db08d1485300f578b8b26259ad12d1"
+
+      def install
+        bin.install "icm"
+
+        # Install bash completion
+        bash_output = Utils.popen_read("#{bin}/icm completion bash")
+        (bash_completion/"icm").write bash_output
+
+        # Install zsh completion
+        zsh_output = Utils.popen_read("#{bin}/icm completion zsh")
+        (zsh_completion/"_icm").write zsh_output
+
+        # Install fish completion
+        fish_output = Utils.popen_read("#{bin}/icm completion fish")
+        (fish_completion/"icm.fish").write fish_output
+
+        # man-pages is also defined in Makefile
+        man1.install Dir["docs/man-pages/man1/*.1"]
+      end
+    end
+    if Hardware::CPU.intel?
+      url "https://github.com/meyermarcel/icm/releases/download/2.3.2/icm_Linux_x86_64.tar.gz"
+      sha256 "a0124bf9ae0b2ab08b80659fa52a207a02f19435a6f7f10d9d0cf66f57f66c61"
 
       def install
         bin.install "icm"
