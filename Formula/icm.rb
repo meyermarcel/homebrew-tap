@@ -5,12 +5,12 @@
 class Icm < Formula
   desc "Generate or validate intermodal container markings."
   homepage "https://github.com/meyermarcel/icm"
-  version "3.1.8"
+  version "3.2.0"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/meyermarcel/icm/releases/download/3.1.8/icm_Darwin_arm64.tar.gz"
-      sha256 "016bca2a73ba75ce57d61cc7dbf2af876e55460eab90c27c26720fcc432f3067"
+    if Hardware::CPU.intel?
+      url "https://github.com/meyermarcel/icm/releases/download/3.2.0/icm_Darwin_x86_64.tar.gz"
+      sha256 "de1ba33b953635feebe1c722712ad00b634bc94cef1ac0337ae15f80ecc19ecd"
 
       def install
         bin.install "icm"
@@ -31,9 +31,9 @@ class Icm < Formula
         man1.install Dir["docs/man-pages/man1/*.1"]
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/meyermarcel/icm/releases/download/3.1.8/icm_Darwin_x86_64.tar.gz"
-      sha256 "ea65d735922540abe83f498abcfe0c7af8353793ce3a6272dbb769f541825a17"
+    if Hardware::CPU.arm?
+      url "https://github.com/meyermarcel/icm/releases/download/3.2.0/icm_Darwin_arm64.tar.gz"
+      sha256 "f33bc5e9cc56f4f3f550c4bf47af9820abdce4e8d0ee7720eb2b303381f77096"
 
       def install
         bin.install "icm"
@@ -57,9 +57,9 @@ class Icm < Formula
   end
 
   on_linux do
-    if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/meyermarcel/icm/releases/download/3.1.8/icm_Linux_armv6.tar.gz"
-      sha256 "4813203138073e46b9edcd8c2bd34b2c3492e14f7de7f010f13ae44c05368196"
+    if Hardware::CPU.intel?
+      url "https://github.com/meyermarcel/icm/releases/download/3.2.0/icm_Linux_x86_64.tar.gz"
+      sha256 "7b4cc8ca28cb0716d0bc60bb2be557077c3e1962098d4169aa773b364cf619f0"
 
       def install
         bin.install "icm"
@@ -80,9 +80,9 @@ class Icm < Formula
         man1.install Dir["docs/man-pages/man1/*.1"]
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/meyermarcel/icm/releases/download/3.1.8/icm_Linux_x86_64.tar.gz"
-      sha256 "49ab17170405f43c8f32b339f2ec2e3ac4844bf3ee69004c5df85e1fac1f41db"
+    if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
+      url "https://github.com/meyermarcel/icm/releases/download/3.2.0/icm_Linux_armv6.tar.gz"
+      sha256 "9a367cddad98195a0e429c0cafaecf7a70b915bdb2ac8d63858d46202199ce0f"
 
       def install
         bin.install "icm"
@@ -104,8 +104,8 @@ class Icm < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/meyermarcel/icm/releases/download/3.1.8/icm_Linux_arm64.tar.gz"
-      sha256 "65ba61a0a7c2c7a25254851e10ab52a6e45c0a7a2677c11d8c9cd2073a73ecf2"
+      url "https://github.com/meyermarcel/icm/releases/download/3.2.0/icm_Linux_arm64.tar.gz"
+      sha256 "c93e90a53041dbda858966ccfc0f82243c30f798d59cbeddbc82110d5ecc2aab"
 
       def install
         bin.install "icm"
